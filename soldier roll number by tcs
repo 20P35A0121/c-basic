@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <math.h>
+
+int mainNumber( st_num,  en_num,  m) {
+   int r, sum = 0;
+   for (int i = st_num; i < en_num; i++) {
+       int t = i;
+       while (i != 0) {
+           r = i % 10;
+           sum += r;
+           i /= 10;
+       }
+       i = t;
+       if (sum == m) {
+           return i;
+       }
+       sum = 0;
+   }
+   return 0;
+}
+
+int main() {
+   int n, m;
+
+   printf("Enter the value of n: ");
+   scanf("%d", &n);
+
+   printf("Enter the value of m: ");
+   scanf("%d", &m);
+
+   int st_num = (int) pow(10, n - 1);
+   int en_num = (int) pow(10, n);
+
+   int f_num = mainNumber(st_num, en_num, m);
+   if (f_num > 0) {
+       printf("%d ", f_num);
+       int r, rev = 0;
+       while (f_num > 0) {
+           r = f_num % 10;
+           rev = rev * 10 + r;
+           f_num /= 10;
+       }
+       printf("%d\n", rev);
+   } else {
+       printf("No such number\n");
+   }
+
+   return 0;
+}
